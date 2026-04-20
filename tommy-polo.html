@@ -879,6 +879,9 @@
   <script>
     // ─── STATE ───
     let selectedSize = '';
+    const API_URL = window.location.hostname === 'localhost'
+      ? 'http://localhost:3001/api/order'
+      : '/api/order';
 
     // ─── SCROLL TO FORM ───
     function scrollToForm() {
@@ -922,7 +925,7 @@
       btn.textContent = 'SLANJE...';
 
       try {
-        const res = await fetch('http://localhost:3001/api/order', {
+        const res = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
