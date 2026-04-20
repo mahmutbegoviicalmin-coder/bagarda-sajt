@@ -1,4 +1,4 @@
-/**
+﻿/**
  * analyze.js
  * Reads every image in ./images/, calls Claude Vision API on each,
  * extracts brand/type/color/name, prints a confirmation table,
