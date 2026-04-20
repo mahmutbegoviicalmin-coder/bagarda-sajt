@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <!-- Meta Pixel Code -->
   <script>
@@ -30,689 +30,559 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #FAF8F5;
-      --text: #1a1a18;
-      --accent: #C9A96E;
-      --border: #E5E0D8;
-      --muted: #7a7670;
+      --bg: #F7F7F5;
+      --bg-white: #FFFFFF;
+      --text: #111111;
+      --text-muted: #888888;
+      --border: #E5E5E3;
+      --accent: #111111;
+      --gold: #C9A96E;
+      --red: #E53935;
     }
     html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
 
-    /* ─── HERO ─── */
-    .hero {
-      background: #1a1a18;
-      text-align: center;
-      padding: 64px 20px 52px;
-    }
-    .hero-eyebrow {
-      font-family: 'Syne', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-    .hero-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(34px, 5vw, 54px);
-      font-weight: 700;
-      line-height: 1.12;
-      color: #ffffff;
-      margin-bottom: 18px;
-    }
-    .hero-title span { color: var(--accent); }
-    .hero-sub {
-      font-size: 15px;
-      font-weight: 300;
-      color: #a09a94;
-      max-width: 480px;
-      margin: 0 auto 32px;
-      line-height: 1.75;
-    }
-    .hero-btn {
-      display: inline-block;
-      background: var(--accent);
-      color: #1a1a18;
-      font-family: 'Syne', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 14px 36px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .hero-btn:hover { opacity: 0.85; }
-
-    /* ─── STATS BAR ─── */
-    .stats-bar {
-      background: #111110;
-      display: flex;
-      justify-content: center;
-      gap: 0;
-    }
-    .stat-item {
-      flex: 1;
-      max-width: 240px;
-      text-align: center;
-      padding: 18px 20px;
-      border-right: 1px solid #2a2a27;
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 11px;
-      font-weight: 300;
-      color: #6a6560;
-      letter-spacing: 0.08em;
-      margin-top: 4px;
-    }
-
-    /* ─── FILTER BAR ─── */
-    .filter-bar {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 28px 20px 20px;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-    }
-    .filter-btn {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 8px 20px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      border-radius: 40px;
-      transition: background 0.18s, color 0.18s, border-color 0.18s;
-    }
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--text);
-      color: #fff;
-      border-color: var(--text);
-    }
-
-    /* ─── PRODUCTS GRID ─── */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1px;
-      background: #e0dbd3;
+      background: #E5E5E3;
+      max-width: 1280px;
+      margin: 32px auto;
+      border: 1px solid #E5E5E3;
     }
-
-    /* ─── PRODUCT CARD ─── */
     .product-card {
-      background: var(--bg);
+      background: #F7F7F5;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      transition: background 0.18s;
-    }
-    .product-card:hover { background: #f5f2ed; }
-    .card-image-wrap {
+      transition: background 0.2s;
       position: relative;
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      background: #f0ede8;
       overflow: hidden;
     }
-    .card-image-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    .product-card:hover { background: #fff; }
+    .card-image-wrap {
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background: #EFEFED;
+    }
+    .card-image {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
       display: block;
-      transition: transform 0.4s ease;
     }
-    .product-card:hover .card-image-wrap img { transform: scale(1.04); }
-    .card-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: #c0392b;
-      color: #fff;
-      font-family: 'Syne', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 4px 9px;
-    }
-    .card-body {
-      padding: 16px 18px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      flex: 1;
-    }
+    .product-card:hover .card-image { transform: scale(1.04); }
+    .card-body { padding: 14px 16px 18px; }
     .card-brand {
-      font-family: 'Syne', sans-serif;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.15em; color: #C9A96E;
+      margin-bottom: 5px; text-transform: uppercase;
     }
     .card-name {
       font-family: 'Syne', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 1.35;
-      color: var(--text);
-    }
-    .card-price-row {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-top: 4px;
-    }
-    .card-price {
-      font-family: 'Syne', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .card-old {
-      font-size: 13px;
-      color: #bbb;
-      text-decoration: line-through;
-    }
-    .card-cta {
-      margin-top: auto;
-      padding-top: 10px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: color 0.2s;
-    }
-    .product-card:hover .card-cta { color: var(--accent); }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: #1a1a18;
-      padding: 36px 20px;
-      text-align: center;
-    }
-    .footer-logo {
-      font-family: 'Syne', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent);
+      font-size: 13px; font-weight: 600;
+      color: #111; line-height: 1.3;
       margin-bottom: 10px;
     }
-    .footer-copy {
-      font-size: 12px;
-      color: #504c48;
-      letter-spacing: 0.06em;
+    .card-bottom {
+      display: flex; align-items: center;
+      justify-content: space-between;
+    }
+    .card-price {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px; font-weight: 700; color: #111;
+    }
+    .card-old {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; color: #bbb;
+      text-decoration: line-through; margin-left: 6px;
+    }
+    .card-arrow {
+      width: 30px; height: 30px;
+      border: 1px solid #E5E5E3;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .product-card:hover .card-arrow { background: #111; border-color: #111; }
+    .product-card:hover .card-arrow svg { stroke: #fff; }
+    .card-badge {
+      position: absolute; top: 10px; left: 10px;
+      background: #E53935; color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.06em; padding: 3px 7px;
+      border-radius: 2px;
     }
 
-    /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
-      .products-grid { grid-template-columns: repeat(3, 1fr); }
+      .products-grid { grid-template-columns: repeat(2, 1fr); margin: 0; }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 480px) {
       .products-grid { grid-template-columns: repeat(2, 1fr); }
-      .stats-bar { flex-wrap: wrap; }
-      .stat-item { border-right: none; border-bottom: 1px solid #2a2a27; min-width: 50%; }
-      .hero-title { font-size: 32px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ─── HERO ─── -->
-  <div class="hero">
-    <div class="hero-eyebrow">Bagarda Boutique</div>
-    <h1 class="hero-title">Premium brendovi<br><span>po outlet cijenama</span></h1>
-    <p class="hero-sub">Tommy Hilfiger, Calvin Klein, Diesel, Armani Exchange — isporuka širom BiH za 1–2 radna dana.</p>
-    <a class="hero-btn" href="#proizvodi">Pogledaj kolekciju</a>
-  </div>
+  <!-- NAV -->
+  <nav style="background:#fff;border-bottom:1px solid #E5E5E3;position:sticky;top:0;z-index:1000;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.15em;color:#888;">KOLEKCIJA 2025</span>
+      <a href="index.html" style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:#111;text-decoration:none;letter-spacing:0.2em;">BAGARDA</a>
+      <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.15em;color:#888;">BiH DOSTAVA</span>
+    </div>
+  </nav>
 
-  <!-- ─── STATS BAR ─── -->
-  <div class="stats-bar">
-    <div class="stat-item">
-      <div class="stat-num">247+</div>
-      <div class="stat-label">zadovoljnih kupaca</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">4.9/5</div>
-      <div class="stat-label">prosječna ocjena</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">1–2</div>
-      <div class="stat-label">dana dostava u BiH</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">−50%</div>
-      <div class="stat-label">popust na sve artikle</div>
-    </div>
-  </div>
+  <!-- HERO -->
+  <section style="background:#fff;padding:80px 32px 64px;border-bottom:1px solid #E5E5E3;">
+    <div style="max-width:900px;margin:0 auto;text-align:center;">
 
-  <!-- ─── FILTER BAR ─── -->
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">Sve</button>
-    <button class="filter-btn" data-filter="polo">Polo majice</button>
-    <button class="filter-btn" data-filter="majica">T-Shirts</button>
-    <button class="filter-btn" data-filter="tommy">Tommy Hilfiger</button>
-    <button class="filter-btn" data-filter="calvin">Calvin Klein</button>
-    <button class="filter-btn" data-filter="diesel">Diesel</button>
-    <button class="filter-btn" data-filter="armani">Armani Exchange</button>
-  </div>
-
-  <!-- ─── PRODUCTS ─── -->
-  <div id="proizvodi" class="products-grid">
-    <div class="product-card" data-type="polo" data-brand="calvin" onclick="window.location='./calvin-klein-bijela-polo.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776696856344-wn297nfxd8i.jpg" alt="Calvin Klein Polo Majica s logom" loading="lazy" />
-        <div class="card-badge">−50%</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:#F7F7F5;border:1px solid #E5E5E3;border-radius:999px;padding:6px 16px;margin-bottom:24px;">
+        <div style="width:6px;height:6px;border-radius:50%;background:#4a7c59;"></div>
+        <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.15em;color:#555;">OUTLET RASPRODAJA — 50% POPUSTA</span>
       </div>
+
+      <h1 style="font-family:'Syne',sans-serif;font-size:clamp(40px,6vw,80px);font-weight:800;color:#111;line-height:1.0;margin-bottom:16px;letter-spacing:-0.02em;">
+        Premium brendovi.<br>
+        <span style="color:#C9A96E;">Outlet cijene.</span>
+      </h1>
+
+      <p style="font-family:'DM Sans',sans-serif;font-size:15px;color:#888;max-width:480px;margin:0 auto 40px;line-height:1.6;">
+        Tommy Hilfiger · Calvin Klein · Diesel · Armani Exchange<br>
+        Isporuka 1–2 dana · Placanje pouzecem
+      </p>
+
+      <a href="#products" style="display:inline-block;background:#111;color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;padding:14px 36px;text-decoration:none;border-radius:2px;">
+        POGLEDAJ KOLEKCIJU
+      </a>
+
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div style="background:#F7F7F5;border-bottom:1px solid #E5E5E3;">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);">
+      <div style="padding:20px 32px;text-align:center;border-right:1px solid #E5E5E3;">
+        <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#111;">24+</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:#888;letter-spacing:0.08em;margin-top:2px;">MODELA</div>
+      </div>
+      <div style="padding:20px 32px;text-align:center;border-right:1px solid #E5E5E3;">
+        <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#111;">4.9/5</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:#888;letter-spacing:0.08em;margin-top:2px;">OCJENA</div>
+      </div>
+      <div style="padding:20px 32px;text-align:center;border-right:1px solid #E5E5E3;">
+        <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#111;">1–2</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:#888;letter-spacing:0.08em;margin-top:2px;">DANA DOSTAVA</div>
+      </div>
+      <div style="padding:20px 32px;text-align:center;">
+        <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#C9A96E;">-50%</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:#888;letter-spacing:0.08em;margin-top:2px;">POPUST</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div id="products" style="background:#fff;border-bottom:1px solid #E5E5E3;position:sticky;top:56px;z-index:999;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px;">
+
+      <!-- Level 1: Type -->
+      <div style="display:flex;gap:0;border-bottom:1px solid #E5E5E3;overflow-x:auto;scrollbar-width:none;">
+        <button class="type-btn active" data-type="all" style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;padding:14px 20px;border:none;background:none;cursor:pointer;color:#111;border-bottom:2px solid #111;white-space:nowrap;">SVE</button>
+        <button class="type-btn" data-type="polo" style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;padding:14px 20px;border:none;background:none;cursor:pointer;color:#888;border-bottom:2px solid transparent;white-space:nowrap;">POLO MAJICE</button>
+        <button class="type-btn" data-type="majica" style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;padding:14px 20px;border:none;background:none;cursor:pointer;color:#888;border-bottom:2px solid transparent;white-space:nowrap;">T-SHIRTS</button>
+      </div>
+
+      <!-- Level 2: Brand -->
+      <div id="brand-bar" style="display:flex;gap:8px;padding:10px 0;overflow-x:auto;scrollbar-width:none;">
+        <button class="brand-btn active" data-brand="all" style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;padding:6px 14px;border:1px solid #111;border-radius:999px;background:#111;color:#fff;cursor:pointer;white-space:nowrap;">Svi brendovi</button>
+        <button class="brand-btn" data-brand="tommy" style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;padding:6px 14px;border:1px solid #E5E5E3;border-radius:999px;background:#fff;color:#888;cursor:pointer;white-space:nowrap;">Tommy Hilfiger</button>
+        <button class="brand-btn" data-brand="calvin" style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;padding:6px 14px;border:1px solid #E5E5E3;border-radius:999px;background:#fff;color:#888;cursor:pointer;white-space:nowrap;">Calvin Klein</button>
+        <button class="brand-btn" data-brand="diesel" style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;padding:6px 14px;border:1px solid #E5E5E3;border-radius:999px;background:#fff;color:#888;cursor:pointer;white-space:nowrap;">Diesel</button>
+        <button class="brand-btn" data-brand="armani" style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;padding:6px 14px;border:1px solid #E5E5E3;border-radius:999px;background:#fff;color:#888;cursor:pointer;white-space:nowrap;">Armani Exchange</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PRODUCT GRID -->
+  <div class="products-grid">
+
+    <div class="product-card" data-type="polo" data-brand="calvin" onclick="location.href='calvin-klein-bijela-polo.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776696856344-wn297nfxd8i.jpg" alt="Calvin Klein Polo Majica s logom Bijela" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Calvin Klein</div>
+        <div class="card-brand">CALVIN KLEIN</div>
         <div class="card-name">Polo Majica s logom — Bijela</div>
-        <div class="card-price-row">
-          <span class="card-price">69,90 KM</span>
-          <span class="card-old">139,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">69,90 KM</span><span class="card-old">139,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="polo" data-brand="calvin" onclick="window.location='./calvin-klein-crna-polo.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776697233216-83bv3vimdkr.jpg" alt="Calvin Klein Polo Majica s logom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="polo" data-brand="calvin" onclick="location.href='calvin-klein-crna-polo.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776697233216-83bv3vimdkr.jpg" alt="Calvin Klein Polo Majica s logom Crna" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Calvin Klein</div>
+        <div class="card-brand">CALVIN KLEIN</div>
         <div class="card-name">Polo Majica s logom — Crna</div>
-        <div class="card-price-row">
-          <span class="card-price">69,90 KM</span>
-          <span class="card-old">139,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">69,90 KM</span><span class="card-old">139,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="polo" data-brand="tommy" onclick="window.location='./tommy-hilfiger-crna-polo.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776697395299-pxsv0ti8xtr.jpg" alt="Tommy Hilfiger Polo majica s zelenim rukavima" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="polo" data-brand="tommy" onclick="location.href='tommy-hilfiger-crna-polo.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776697395299-pxsv0ti8xtr.jpg" alt="Tommy Hilfiger Polo majica s zelenim rukavima Crna" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Tommy Hilfiger</div>
+        <div class="card-brand">TOMMY HILFIGER</div>
         <div class="card-name">Polo majica s zelenim rukavima — Crna</div>
-        <div class="card-price-row">
-          <span class="card-price">69,90 KM</span>
-          <span class="card-old">139,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">69,90 KM</span><span class="card-old">139,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="polo" data-brand="tommy" onclick="window.location='./tommy-hilfiger-zelena-polo.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776697594904-wftj5gbapbl.jpg" alt="Tommy Hilfiger Polo Majica s kontrastnim rukavima" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="polo" data-brand="tommy" onclick="location.href='tommy-hilfiger-zelena-polo.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776697594904-wftj5gbapbl.jpg" alt="Tommy Hilfiger Polo Majica s kontrastnim rukavima Zelena" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Tommy Hilfiger</div>
+        <div class="card-brand">TOMMY HILFIGER</div>
         <div class="card-name">Polo Majica s kontrastnim rukavima — Zelena</div>
-        <div class="card-price-row">
-          <span class="card-price">69,90 KM</span>
-          <span class="card-old">139,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">69,90 KM</span><span class="card-old">139,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="polo" data-brand="tommy" onclick="window.location='./tommy-hilfiger-bijela-polo.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776698138324-3f1larrszfr.jpg" alt="Tommy Hilfiger Polo Majica s kontrastnim rukavima" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="polo" data-brand="tommy" onclick="location.href='tommy-hilfiger-bijela-polo.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776698138324-3f1larrszfr.jpg" alt="Tommy Hilfiger Polo Majica s kontrastnim rukavima Bijela" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Tommy Hilfiger</div>
+        <div class="card-brand">TOMMY HILFIGER</div>
         <div class="card-name">Polo Majica s kontrastnim rukavima — Bijela</div>
-        <div class="card-price-row">
-          <span class="card-price">69,90 KM</span>
-          <span class="card-old">139,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">69,90 KM</span><span class="card-old">139,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="polo" data-brand="tommy" onclick="window.location='./tommy-hilfiger-teget-polo.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776698306591-tksrj2hruo.jpg" alt="Tommy Hilfiger Polo Majica s crvenim rukavima" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="polo" data-brand="tommy" onclick="location.href='tommy-hilfiger-teget-polo.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776698306591-tksrj2hruo.jpg" alt="Tommy Hilfiger Polo Majica s crvenim rukavima Teget" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Tommy Hilfiger</div>
+        <div class="card-brand">TOMMY HILFIGER</div>
         <div class="card-name">Polo Majica s crvenim rukavima — Teget</div>
-        <div class="card-price-row">
-          <span class="card-price">69,90 KM</span>
-          <span class="card-old">139,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">69,90 KM</span><span class="card-old">139,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="polo" data-brand="armani" onclick="window.location='./armani-exchange-teget-polo.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776698417436-hf9wfrxdtnb (1).jpg" alt="Armani Exchange Polo Majica s logom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="polo" data-brand="armani" onclick="location.href='armani-exchange-teget-polo.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776698417436-hf9wfrxdtnb (1).jpg" alt="Armani Exchange Polo Majica s logom Teget" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Armani Exchange</div>
+        <div class="card-brand">ARMANI EXCHANGE</div>
         <div class="card-name">Polo Majica s logom — Teget</div>
-        <div class="card-price-row">
-          <span class="card-price">69,90 KM</span>
-          <span class="card-old">139,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">69,90 KM</span><span class="card-old">139,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="polo" data-brand="armani" onclick="window.location='./armani-exchange-bijela-polo.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776698444557-cg7ths85h5j.jpg" alt="Armani Exchange Polo Majica" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="polo" data-brand="armani" onclick="location.href='armani-exchange-bijela-polo.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776698444557-cg7ths85h5j.jpg" alt="Armani Exchange Polo Majica Bijela" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Armani Exchange</div>
+        <div class="card-brand">ARMANI EXCHANGE</div>
         <div class="card-name">Polo Majica — Bijela</div>
-        <div class="card-price-row">
-          <span class="card-price">69,90 KM</span>
-          <span class="card-old">139,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">69,90 KM</span><span class="card-old">139,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="polo" data-brand="calvin" onclick="window.location='./calvin-klein-teget-polo.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776698475231-8lqfef7mry7.jpg" alt="Calvin Klein Polo Majica s logom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="polo" data-brand="calvin" onclick="location.href='calvin-klein-teget-polo.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776698475231-8lqfef7mry7.jpg" alt="Calvin Klein Polo Majica s logom Teget" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Calvin Klein</div>
+        <div class="card-brand">CALVIN KLEIN</div>
         <div class="card-name">Polo Majica s logom — Teget</div>
-        <div class="card-price-row">
-          <span class="card-price">69,90 KM</span>
-          <span class="card-old">139,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">69,90 KM</span><span class="card-old">139,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-bijela-majica.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776698722355-22m1hxxp8n5.jpg" alt="Diesel Majica s printom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="location.href='diesel-bijela-majica.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776698722355-22m1hxxp8n5.jpg" alt="Diesel Majica s printom Bijela" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Diesel</div>
+        <div class="card-brand">DIESEL</div>
         <div class="card-name">Majica s printom — Bijela</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="calvin" onclick="window.location='./calvin-klein-bijela-majica.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776698746680-tiv64sv5nm.jpg" alt="Calvin Klein Majica s logom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="calvin" onclick="location.href='calvin-klein-bijela-majica.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776698746680-tiv64sv5nm.jpg" alt="Calvin Klein Majica s logom Bijela" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Calvin Klein</div>
+        <div class="card-brand">CALVIN KLEIN</div>
         <div class="card-name">Majica s logom — Bijela</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="calvin" onclick="window.location='./calvin-klein-teget-majica.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776698787923-z39rrzc6wg.jpg" alt="Calvin Klein Majica s logom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="calvin" onclick="location.href='calvin-klein-teget-majica.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776698787923-z39rrzc6wg.jpg" alt="Calvin Klein Majica s logom Teget" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Calvin Klein</div>
+        <div class="card-brand">CALVIN KLEIN</div>
         <div class="card-name">Majica s logom — Teget</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="calvin" onclick="window.location='./calvin-klein-bez-majica.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776699047116-17py2habuz3 (1).jpg" alt="Calvin Klein Majica s logom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="calvin" onclick="location.href='calvin-klein-bez-majica.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776699047116-17py2habuz3 (1).jpg" alt="Calvin Klein Majica s logom Bež" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Calvin Klein</div>
+        <div class="card-brand">CALVIN KLEIN</div>
         <div class="card-name">Majica s logom — Bež</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="calvin" onclick="window.location='./calvin-klein-crna-majica.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776699126469-iihab8w9ef9.jpg" alt="Calvin Klein Majica s logom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="calvin" onclick="location.href='calvin-klein-crna-majica.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776699126469-iihab8w9ef9.jpg" alt="Calvin Klein Majica s logom Crna" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Calvin Klein</div>
+        <div class="card-brand">CALVIN KLEIN</div>
         <div class="card-name">Majica s logom — Crna</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-tamno-siva-majica.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776699278578-k2dothdzbtd.jpg" alt="Diesel Majica s printom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="location.href='diesel-tamno-siva-majica.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776699278578-k2dothdzbtd.jpg" alt="Diesel Majica s printom Tamno siva" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Diesel</div>
+        <div class="card-brand">DIESEL</div>
         <div class="card-name">Majica s printom — Tamno siva</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-bijela-majica-2.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776699448927-ys3xcqpxo5 (1).jpg" alt="Diesel Majica s printom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="location.href='diesel-bijela-majica-2.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776699448927-ys3xcqpxo5 (1).jpg" alt="Diesel Majica s printom Bijela" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Diesel</div>
+        <div class="card-brand">DIESEL</div>
         <div class="card-name">Majica s printom — Bijela</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="armani" onclick="window.location='./armani-exchange-bijela-majica.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776699748133-jwrjk0375gn.jpg" alt="Armani Exchange Majica s printom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="armani" onclick="location.href='armani-exchange-bijela-majica.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776699748133-jwrjk0375gn.jpg" alt="Armani Exchange Majica s printom Bijela" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Armani Exchange</div>
+        <div class="card-brand">ARMANI EXCHANGE</div>
         <div class="card-name">Majica s printom — Bijela</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="armani" onclick="window.location='./armani-exchange-crna-majica.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776699806740-xr3kbfm6c9j.jpg" alt="Armani Exchange Majica s printom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="armani" onclick="location.href='armani-exchange-crna-majica.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776699806740-xr3kbfm6c9j.jpg" alt="Armani Exchange Majica s printom Crna" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Armani Exchange</div>
+        <div class="card-brand">ARMANI EXCHANGE</div>
         <div class="card-name">Majica s printom — Crna</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-bijela-majica-3.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776699909417-9re6z3zhp77.jpg" alt="Diesel Majica s printom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="location.href='diesel-bijela-majica-3.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776699909417-9re6z3zhp77.jpg" alt="Diesel Majica s printom Bijela" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Diesel</div>
+        <div class="card-brand">DIESEL</div>
         <div class="card-name">Majica s printom — Bijela</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-crna-majica.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776699939682-wwmwcbcypj.jpg" alt="Diesel Majica s printom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="location.href='diesel-crna-majica.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776699939682-wwmwcbcypj.jpg" alt="Diesel Majica s printom Crna" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Diesel</div>
+        <div class="card-brand">DIESEL</div>
         <div class="card-name">Majica s printom — Crna</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="calvin" onclick="window.location='./calvin-klein-mint-zelena-majica.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776699972498-fgl2bzsdfxh.jpg" alt="Calvin Klein Majica s logom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="calvin" onclick="location.href='calvin-klein-mint-zelena-majica.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776699972498-fgl2bzsdfxh.jpg" alt="Calvin Klein Majica s logom Mint zelena" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Calvin Klein</div>
+        <div class="card-brand">CALVIN KLEIN</div>
         <div class="card-name">Majica s logom — Mint zelena</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="polo" data-brand="tommy" onclick="window.location='./tommy-hilfiger-bordo-polo.html'">
-      <div class="card-image-wrap">
-        <img src="./images/1776700011755-9hzev79vll5.jpg" alt="Tommy Hilfiger Polo Majica s kontrastnim rukavima" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="polo" data-brand="tommy" onclick="location.href='tommy-hilfiger-bordo-polo.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/1776700011755-9hzev79vll5.jpg" alt="Tommy Hilfiger Polo Majica s kontrastnim rukavima Bordo" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Tommy Hilfiger</div>
+        <div class="card-brand">TOMMY HILFIGER</div>
         <div class="card-name">Polo Majica s kontrastnim rukavima — Bordo</div>
-        <div class="card-price-row">
-          <span class="card-price">69,90 KM</span>
-          <span class="card-old">139,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">69,90 KM</span><span class="card-old">139,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-crna-majica-2.html'">
-      <div class="card-image-wrap">
-        <img src="./images/702422e6f1d8e16fa48591ff6131e0441279279.jpeg" alt="Diesel Majica s printom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="location.href='diesel-crna-majica-2.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/702422e6f1d8e16fa48591ff6131e0441279279.jpeg" alt="Diesel Majica s printom Crna" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Diesel</div>
+        <div class="card-brand">DIESEL</div>
         <div class="card-name">Majica s printom — Crna</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
-    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-crna-majica-3.html'">
-      <div class="card-image-wrap">
-        <img src="./images/7f18f826f5ed74fb4cb4760d542e7f801815497.jpeg" alt="Diesel Majica s printom" loading="lazy" />
-        <div class="card-badge">−50%</div>
-      </div>
+
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="location.href='diesel-crna-majica-3.html'">
+      <div class="card-image-wrap"><img class="card-image" src="./images/7f18f826f5ed74fb4cb4760d542e7f801815497.jpeg" alt="Diesel Majica s printom Crna" loading="lazy"></div>
+      <span class="card-badge">-50%</span>
       <div class="card-body">
-        <div class="card-brand">Diesel</div>
+        <div class="card-brand">DIESEL</div>
         <div class="card-name">Majica s printom — Crna</div>
-        <div class="card-price-row">
-          <span class="card-price">59,90 KM</span>
-          <span class="card-old">119,90 KM</span>
+        <div class="card-bottom">
+          <div><span class="card-price">59,90 KM</span><span class="card-old">119,90 KM</span></div>
+          <div class="card-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
-        <div class="card-cta">Naruči →</div>
       </div>
     </div>
   </div>
 
-  <!-- ─── FOOTER ─── -->
-  <footer>
-    <div class="footer-logo">Bagarda</div>
-    <div class="footer-copy">&copy; 2025 Bagarda. Sva prava zadržana.</div>
+  <!-- FOOTER -->
+  <footer style="background:#111;padding:40px 32px;margin-top:1px;">
+    <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <span style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:0.2em;">BAGARDA</span>
+      <div style="display:flex;gap:24px;">
+        <span style="font-family:'DM Sans',sans-serif;font-size:12px;color:#555;">Dostava 1–2 dana</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:12px;color:#555;">Placanje pouzecem</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:12px;color:#555;">Povrat 14 dana</span>
+      </div>
+      <span style="font-family:'DM Sans',sans-serif;font-size:11px;color:#444;">© 2025 Bagarda</span>
+    </div>
   </footer>
 
   <script>
-    (function () {
-      var btns  = document.querySelectorAll('.filter-btn');
-      var cards = document.querySelectorAll('.product-card');
+    let activeType = 'all';
+    let activeBrand = 'all';
 
-      btns.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          btns.forEach(function (b) { b.classList.remove('active'); });
-          btn.classList.add('active');
-
-          var filter = btn.dataset.filter;
-          cards.forEach(function (card) {
-            var show = filter === 'all'
-              || card.dataset.type  === filter
-              || card.dataset.brand === filter;
-            card.style.display = show ? 'block' : 'none';
-          });
-        });
+    function filterProducts() {
+      document.querySelectorAll('.product-card').forEach(card => {
+        const typeMatch = activeType === 'all' || card.dataset.type === activeType;
+        const brandMatch = activeBrand === 'all' || card.dataset.brand === activeBrand;
+        card.style.display = (typeMatch && brandMatch) ? 'block' : 'none';
       });
-    })();
+    }
+
+    document.querySelectorAll('.type-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.type-btn').forEach(b => {
+          b.style.borderBottom = '2px solid transparent';
+          b.style.color = '#888';
+        });
+        btn.style.borderBottom = '2px solid #111';
+        btn.style.color = '#111';
+        activeType = btn.dataset.type;
+        activeBrand = 'all';
+        document.querySelectorAll('.brand-btn').forEach(b => {
+          b.style.background = '#fff';
+          b.style.color = '#888';
+          b.style.borderColor = '#E5E5E3';
+        });
+        document.querySelector('.brand-btn[data-brand="all"]').style.background = '#111';
+        document.querySelector('.brand-btn[data-brand="all"]').style.color = '#fff';
+        document.querySelector('.brand-btn[data-brand="all"]').style.borderColor = '#111';
+        filterProducts();
+      });
+    });
+
+    document.querySelectorAll('.brand-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.brand-btn').forEach(b => {
+          b.style.background = '#fff';
+          b.style.color = '#888';
+          b.style.borderColor = '#E5E5E3';
+        });
+        btn.style.background = '#111';
+        btn.style.color = '#fff';
+        btn.style.borderColor = '#111';
+        activeBrand = btn.dataset.brand;
+        filterProducts();
+      });
+    });
   </script>
 
 </body>
