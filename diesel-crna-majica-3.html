@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diesel — Majica s printom | Bagarda</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #FAF8F5;
+      --text: #1a1a18;
+      --accent: #C9A96E;
+      --border: #E5E0D8;
+      --muted: #7a7670;
+      --white: #ffffff;
+      --radius: 2px;
+      --green: #4a7c59;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%       { transform: translateX(-6px); }
+      40%       { transform: translateX(6px); }
+      60%       { transform: translateX(-4px); }
+      80%       { transform: translateX(4px); }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .fade-up  { animation: fadeUp 0.7s ease both; }
+    .fade-in  { animation: fadeIn 0.5s ease both; }
+    .delay-1  { animation-delay: 0.10s; }
+    .delay-2  { animation-delay: 0.22s; }
+    .delay-3  { animation-delay: 0.34s; }
+    .delay-4  { animation-delay: 0.46s; }
+    .delay-5  { animation-delay: 0.58s; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-left { display: flex; align-items: center; gap: 32px; }
+    .nav-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text); }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-right { width: 80px; }
+
+    /* ─── BREADCRUMB ─── */
+    .breadcrumb {
+      padding: 18px 40px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { margin: 0 8px; }
+
+    /* ─── SOCIAL PROOF BAR ─── */
+    .sp-bar-wrap { text-align: center; padding: 0 40px; }
+    #social-proof-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: #f0ede8;
+      border: 1px solid #e0dbd3;
+      border-radius: 999px;
+      padding: 6px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      margin: 12px auto;
+    }
+    .sp-item { display: inline-flex; align-items: center; gap: 6px; }
+    .sp-divider { color: #d0cbc3; font-weight: 300; }
+
+    /* ─── PRODUCT SECTION ─── */
+    .product-section {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 20px 40px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    /* ─── SINGLE IMAGE ─── */
+    .gallery {
+      position: sticky;
+      top: 88px;
+    }
+    .product-image-container {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      position: relative;
+      background: #f5f3f0;
+      border-radius: 4px;
+      cursor: zoom-in;
+    }
+    .product-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+
+    /* ─── PRODUCT INFO ─── */
+    .product-info { padding-top: 12px; }
+    .brand-tag {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .product-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+    .price-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .price-current {
+      font-family: 'Syne', sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .price-old {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+    .badge-sale {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--text);
+      color: var(--white);
+      padding: 4px 10px;
+      border-radius: var(--radius);
+    }
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 28px 0;
+    }
+    .product-description {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 28px;
+    }
+
+    /* ─── FORM SIZE BUTTONS ─── */
+    .form-size-btn {
+      width: 52px;
+      height: 52px;
+      border: 1.5px solid #e0dbd3;
+      border-radius: 6px;
+      background: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a18;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .form-size-btn:hover { border-color: #1a1a18; }
+    .form-size-btn.selected {
+      background: #1a1a18;
+      border-color: #1a1a18;
+      color: #fff;
+    }
+
+    /* ─── CTA BUTTON ─── */
+    .btn-order {
+      width: 100%;
+      height: 56px;
+      background: var(--text);
+      color: var(--white);
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.22s ease;
+    }
+    .btn-order:hover { background: var(--accent); }
+
+    /* ─── TRUST BADGES ─── */
+    .trust-section {
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+      padding: 40px 20px;
+    }
+    .trust-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      align-items: center;
+      gap: 0;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 32px;
+      justify-content: center;
+    }
+    .trust-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .trust-text { display: flex; flex-direction: column; gap: 3px; }
+    .trust-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .trust-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: #888;
+    }
+    .trust-divider {
+      width: 1px;
+      height: 48px;
+      background: #e0dbd3;
+      align-self: center;
+    }
+
+    /* ─── ORDER FORM SECTION ─── */
+    .forma-section {
+      padding: 60px 20px 80px;
+      background: var(--bg);
+    }
+    .forma-inner {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .forma-heading {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 32px;
+      color: var(--text);
+    }
+
+    /* Product summary in form */
+    .form-product-summary {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--white);
+      margin-bottom: 32px;
+    }
+    .form-product-summary img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+      background: #F0EDE8;
+    }
+    .form-summary-info { display: flex; flex-direction: column; gap: 3px; }
+    .form-summary-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .form-summary-price {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .form-summary-size {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+    .form-summary-size.not-selected { color: var(--muted); font-weight: 300; }
+
+    /* Inline form fields (border-bottom only) */
+    .inline-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .inline-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0 10px;
+      transition: border-color 0.2s;
+    }
+    .inline-field:focus-within { border-color: var(--text); }
+    .inline-field.error { border-color: #b94a3a; animation: shake 0.4s ease; }
+    .inline-field label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .inline-field input {
+      border: none;
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text);
+      outline: none;
+      padding: 0;
+      width: 100%;
+    }
+    .inline-field input::placeholder { color: #ccc; }
+
+    .inline-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 24px;
+    }
+    .inline-row .inline-field { padding-right: 0; }
+
+    /* Submit */
+    .btn-submit {
+      width: 100%;
+      height: 56px;
+      background: var(--text);
+      color: var(--white);
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 32px;
+      transition: background 0.22s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-submit:hover { background: var(--accent); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+
+    /* Form size error */
+    .form-size-note {
+      font-size: 11px;
+      color: #b94a3a;
+      margin-top: 12px;
+      display: none;
+      text-align: center;
+    }
+    .form-size-note.visible { display: block; }
+
+    /* ─── CONFIRMATION ─── */
+    .confirmation {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px 0 40px;
+    }
+    .confirmation.visible { display: flex; }
+    .check-circle {
+      width: 72px;
+      height: 72px;
+      border: 1.5px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 28px;
+    }
+    .confirmation h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .confirmation p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 340px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid #e0dbd3;
+      padding: 24px 0;
+      text-align: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── TOAST ─── */
+    #toast {
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      transform: translateX(-120%);
+      opacity: 0;
+    }
+    #toast.toast-show { display: block !important; transform: translateX(0); opacity: 1; }
+    #toast.toast-hide { transform: translateX(-120%); opacity: 0; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 860px) {
+      header { padding: 0 20px; height: 60px; }
+      .logo { font-size: 22px; }
+      .breadcrumb { padding: 14px 20px; }
+      .sp-bar-wrap { padding: 0 20px; }
+
+      .product-section {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 16px 20px 40px;
+      }
+      .gallery { position: static; }
+
+      .trust-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .trust-divider { display: none; }
+      .trust-badge { justify-content: flex-start; padding: 0 20px; }
+
+      .inline-row { grid-template-columns: 1fr; gap: 0; }
+    }
+
+    @media (max-width: 420px) {
+      .product-name { font-size: 26px; }
+      .price-current { font-size: 28px; }
+      .form-size-btn { width: 46px; height: 46px; }
+      .forma-heading { font-size: 26px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ─── HEADER ─── -->
+  <header class="fade-in">
+    <nav class="nav-left">
+      <a href="#" class="nav-link">← Proizvodi</a>
+    </nav>
+    <a href="#" class="logo">Bagarda</a>
+    <div class="nav-right"></div>
+  </header>
+
+  <!-- ─── BREADCRUMB ─── -->
+  <div class="breadcrumb fade-in delay-1">
+    <a href="#">Bagarda</a>
+    <span>/</span>
+    <a href="#">Proizvodi</a>
+    <span>/</span>
+    Diesel — Majica s printom
+  </div>
+
+  <!-- ─── SOCIAL PROOF BAR ─── -->
+  <div class="sp-bar-wrap fade-in delay-1">
+    <div id="social-proof-bar">
+      <span class="sp-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        <span id="viewers-count">24</span> osoba gleda
+      </span>
+      <span class="sp-divider">|</span>
+      <span class="sp-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#d4732a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+        Naručeno <span id="orders-count">91</span>x danas
+      </span>
+    </div>
+  </div>
+
+  <!-- ─── PRODUCT SECTION ─── -->
+  <section class="product-section">
+
+    <!-- Left: Single Image -->
+    <div class="gallery fade-up delay-1">
+      <div class="product-image-container">
+        <img src="./images/7f18f826f5ed74fb4cb4760d542e7f801815497.jpeg" alt="Diesel Majica s printom" />
+      </div>
+      <p style="text-align:center; font-size:11px; color:#aaa; font-family:'DM Sans',sans-serif; margin-top:8px; letter-spacing:0.05em;">Klikni za uvećanje</p>
+    </div>
+
+    <!-- Right: Product Info -->
+    <div class="product-info">
+
+      <span class="brand-tag fade-up delay-1">Diesel</span>
+
+      <h1 class="product-name fade-up delay-2">Majica s printom — Crna</h1>
+
+      <div class="price-row fade-up delay-3">
+        <span class="price-current">59,90 KM</span>
+        <span class="price-old">119,90 KM</span>
+        <span class="badge-sale">Sniženo −50%</span>
+      </div>
+
+      <div id="countdown-wrap" style="display:flex; align-items:center; gap:8px; margin-top:12px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span style="font-family:'DM Sans',sans-serif; font-size:13px; color:#c0392b;">Cijena vrijedi još: <strong id="countdown-timer">23:47:12</strong></span>
+      </div>
+
+      <div class="divider fade-up delay-3"></div>
+
+      <p class="product-description fade-up delay-3">
+        Elegantna Diesel majica izrađena od premium pamuka. Moderan dizajn koji savršeno kombinira stil i udobnost — idealna za svaku prigodu, od casual do smart-casual stila.
+      </p>
+
+      <!-- CTA — scrolls to form -->
+      <div class="fade-up delay-5">
+        <button class="btn-order" onclick="scrollToForm()">
+          Naruči odmah
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── TRUST BADGES ─── -->
+  <section class="trust-section">
+    <div class="trust-inner">
+
+      <div class="trust-badge">
+        <div class="trust-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <div class="trust-text">
+          <span class="trust-title">Ekspresna dostava</span>
+          <span class="trust-sub">Isporuka 1–2 radna dana</span>
+        </div>
+      </div>
+
+      <div class="trust-divider"></div>
+
+      <div class="trust-badge">
+        <div class="trust-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10"/>
+            <polyline points="23 20 23 14 17 14"/>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+          </svg>
+        </div>
+        <div class="trust-text">
+          <span class="trust-title">Povrat u roku od 14 dana</span>
+          <span class="trust-sub">Bez pitanja, bez komplikacija</span>
+        </div>
+      </div>
+
+      <div class="trust-divider"></div>
+
+      <div class="trust-badge">
+        <div class="trust-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+            <line x1="7" y1="7" x2="7.01" y2="7"/>
+          </svg>
+        </div>
+        <div class="trust-text">
+          <span class="trust-title">Najniže cijene u BiH</span>
+          <span class="trust-sub">Premium brendovi po outlet cijenama</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── REVIEWS ─── -->
+  <section style="padding:40px 20px; background:var(--bg); border-top:1px solid var(--border);">
+    <style>@media(max-width:600px){.reviews-grid{grid-template-columns:1fr !important;}}</style>
+    <div style="max-width:640px; margin:0 auto;">
+      <h2 style="font-family:'Syne',sans-serif; font-size:22px; font-weight:600; text-align:center; margin-bottom:24px; color:var(--text);">Što kažu kupci</h2>
+      <div class="reviews-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+
+        <div style="background:#fff; border:1px solid #e0dbd3; border-radius:8px; padding:16px;">
+          <div style="color:#C9A96E; font-size:14px; letter-spacing:2px;">★★★★★</div>
+          <p style="font-family:'DM Sans',sans-serif; font-size:14px; color:#444; margin:8px 0; line-height:1.6;">Majica je stigla za 2 dana, kvaliteta je odlična. Preporučujem svima!</p>
+          <div style="font-family:'DM Sans',sans-serif; font-size:13px;"><strong>Samir K.</strong> <span style="color:#7a7670;">· Sarajevo</span></div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #e0dbd3; border-radius:8px; padding:16px;">
+          <div style="color:#C9A96E; font-size:14px; letter-spacing:2px;">★★★★★</div>
+          <p style="font-family:'DM Sans',sans-serif; font-size:14px; color:#444; margin:8px 0; line-height:1.6;">Naručio sam L i savršeno stoji. Brend je original, nisam razočaran.</p>
+          <div style="font-family:'DM Sans',sans-serif; font-size:13px;"><strong>Emir H.</strong> <span style="color:#7a7670;">· Tuzla</span></div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #e0dbd3; border-radius:8px; padding:16px;">
+          <div style="color:#C9A96E; font-size:14px; letter-spacing:2px;">★★★★★</div>
+          <p style="font-family:'DM Sans',sans-serif; font-size:14px; color:#444; margin:8px 0; line-height:1.6;">Super iskustvo, dostava brza i pakiranje uredno. Naručit ću opet.</p>
+          <div style="font-family:'DM Sans',sans-serif; font-size:13px;"><strong>Damir M.</strong> <span style="color:#7a7670;">· Mostar</span></div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #e0dbd3; border-radius:8px; padding:16px;">
+          <div style="color:#C9A96E; font-size:14px; letter-spacing:2px;">★★★★★</div>
+          <p style="font-family:'DM Sans',sans-serif; font-size:14px; color:#444; margin:8px 0; line-height:1.6;">Odlična cijena za ovakav kvalitet. Vidljivo premium, preporučujem.</p>
+          <div style="font-family:'DM Sans',sans-serif; font-size:13px;"><strong>Alen B.</strong> <span style="color:#7a7670;">· Zenica</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ORDER FORM ─── -->
+  <section class="forma-section" id="forma">
+    <div class="forma-inner">
+
+      <div style="text-align:center;">
+        <div style="display:inline-flex; align-items:center; gap:10px; background:#f0f7f2; border:1.5px solid #4a7c59; border-radius:8px; padding:14px 24px; margin-bottom:32px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          <div>
+            <div style="font-family:'Syne',sans-serif; font-size:15px; font-weight:600; color:#1a1a18;">Plaćanje pouzećem</div>
+            <div style="font-family:'DM Sans',sans-serif; font-size:12px; color:#4a7c59;">Platiš gotovinom kada majica stigne na vrata</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:center; gap:0; margin-bottom:24px;">
+        <!-- Step 1 -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+          <div id="progress-step-1" style="width:32px; height:32px; border-radius:50%; background:#1a1a18; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600;">1</div>
+          <span style="font-family:'DM Sans',sans-serif; font-size:11px; color:#1a1a18; font-weight:500;">Veličina</span>
+        </div>
+        <!-- Line -->
+        <div style="width:60px; height:1px; background:#1a1a18; margin-bottom:18px;"></div>
+        <!-- Step 2 -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+          <div id="progress-step-2" style="width:32px; height:32px; border-radius:50%; background:#1a1a18; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600;">2</div>
+          <span style="font-family:'DM Sans',sans-serif; font-size:11px; color:#1a1a18; font-weight:500;">Podaci</span>
+        </div>
+        <!-- Line -->
+        <div style="width:60px; height:1px; background:#ddd; margin-bottom:18px;"></div>
+        <!-- Step 3 -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+          <div id="progress-step-3" style="width:32px; height:32px; border-radius:50%; background:#ddd; color:#999; display:flex; align-items:center; justify-content:center; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600;">3</div>
+          <span style="font-family:'DM Sans',sans-serif; font-size:11px; color:#999;">Potvrda</span>
+        </div>
+      </div>
+
+      <h2 class="forma-heading">Završi narudžbu</h2>
+
+      <!-- Product summary -->
+      <div class="form-product-summary">
+        <img src="./images/7f18f826f5ed74fb4cb4760d542e7f801815497.jpeg" alt="Diesel majica" />
+        <div class="form-summary-info">
+          <span class="form-summary-name">Diesel — Majica s printom</span>
+          <span class="form-summary-price">59,90 KM</span>
+          <span id="summary-size" style="font-size:13px; color:#aaa;">— odaberi veličinu —</span>
+        </div>
+      </div>
+
+      <!-- Size selector + stock bar -->
+      <div style="margin:20px 0 28px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;color:#1a1a18;margin-bottom:12px;">ODABERI VELIČINU</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button type="button" class="form-size-btn" data-size="S">S</button>
+          <button type="button" class="form-size-btn" data-size="M">M</button>
+          <button type="button" class="form-size-btn" data-size="L">L</button>
+          <button type="button" class="form-size-btn" data-size="XL">XL</button>
+          <button type="button" class="form-size-btn" data-size="2XL">2XL</button>
+        </div>
+        <div style="margin-top:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span style="font-family:'DM Sans',sans-serif;font-size:11px;color:#aaa;">Dostupnost zaliha</span>
+            <span id="stock-label" style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;color:#c0392b;"></span>
+          </div>
+          <div style="width:100%;height:5px;background:#eee;border-radius:999px;overflow:hidden;">
+            <div id="stock-bar" style="height:100%;border-radius:999px;background:linear-gradient(90deg,#4a7c59,#c0392b);transition:width 0.6s ease;width:0%;"></div>
+          </div>
+          <div id="stock-sub" style="font-family:'DM Sans',sans-serif;font-size:11px;color:#bbb;margin-top:5px;"></div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form class="inline-form" id="orderForm" novalidate>
+
+        <input type="hidden" id="velicina-input" name="velicina" />
+
+        <div class="inline-row">
+          <div class="inline-field" id="field-ime">
+            <label for="ime">Ime</label>
+            <input type="text" id="ime" name="ime" placeholder="Vaše ime" autocomplete="given-name" />
+          </div>
+          <div class="inline-field" id="field-prezime">
+            <label for="prezime">Prezime</label>
+            <input type="text" id="prezime" name="prezime" placeholder="Vaše prezime" autocomplete="family-name" />
+          </div>
+        </div>
+
+        <div class="inline-field" id="field-adresa">
+          <label for="adresa">Adresa</label>
+          <input type="text" id="adresa" name="adresa" placeholder="Ulica i broj" autocomplete="street-address" />
+        </div>
+
+        <div class="inline-field" id="field-grad">
+          <label for="grad">Grad</label>
+          <input type="text" id="grad" name="grad" placeholder="Vaš grad" autocomplete="address-level2" />
+        </div>
+
+        <div class="inline-field" id="field-telefon">
+          <label for="telefon">Broj telefona</label>
+          <input type="tel" id="telefon" name="telefon" placeholder="+387 6x xxx xxx" autocomplete="tel" />
+        </div>
+
+        <p class="form-size-note" id="formSizeNote">Molimo odaberite veličinu u gornjem dijelu stranice.</p>
+
+        <button type="button" class="btn-submit" id="submit-btn">
+          POTVRDI NARUDŽBU
+        </button>
+
+      </form>
+
+      <!-- Confirmation -->
+      <div class="confirmation" id="confirmation">
+        <div class="check-circle">✓</div>
+        <h2 id="confirmHeading">Hvala!</h2>
+        <p id="confirmText">Vaša narudžba je primljena. Kontaktirat ćemo vas uskoro.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    &copy; 2025 Bagarda. Sva prava zadržana.
+  </footer>
+
+  <!-- ─── STICKY MOBILE BAR ─── -->
+  <div id="sticky-bar" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9998; background:#1a1a18; padding:12px 16px; align-items:center; justify-content:space-between; gap:12px; border-top:1px solid #333;">
+    <div>
+      <div style="font-family:'Syne',sans-serif; font-size:13px; color:#fff; font-weight:600;" id="sticky-name">Diesel — Majica s printom</div>
+      <div style="font-family:'DM Sans',sans-serif; font-size:13px; color:#C9A96E; font-weight:500;">59,90 KM</div>
+    </div>
+    <button onclick="document.getElementById('forma').scrollIntoView({behavior:'smooth'})" style="background:#C9A96E; color:#1a1a18; border:none; padding:10px 20px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; border-radius:4px; cursor:pointer; white-space:nowrap;">
+      NARUČI ODMAH
+    </button>
+  </div>
+
+  <!-- ─── LIGHTBOX ─── -->
+  <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:99999; cursor:zoom-out; align-items:center; justify-content:center;">
+    <img id="lightbox-img" style="max-width:90vw; max-height:90vh; object-fit:contain; border-radius:4px;">
+    <button id="lightbox-close" style="position:fixed; top:20px; right:28px; background:none; border:none; color:#fff; font-size:32px; cursor:pointer; font-family:'DM Sans',sans-serif;">✕</button>
+  </div>
+
+  <!-- ─── TOAST ─── -->
+  <div id="toast" style="display:none; position:fixed; bottom:24px; left:24px; z-index:9999; width:300px;">
+    <div style="background:#fff; border-left:3px solid #4a7c59; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.10); padding:12px 16px;">
+      <div id="toast-main" style="font-family:'DM Sans',sans-serif; font-size:13px; color:#1a1a18; margin-bottom:4px;"></div>
+      <div id="toast-time" style="font-family:'DM Sans',sans-serif; font-size:11px; color:#999;"></div>
+    </div>
+  </div>
+
+  <script>
+    // ─── STATE ───
+    let selectedSize = '';
+
+    // ─── SCROLL TO FORM ───
+    function scrollToForm() {
+      document.getElementById('forma').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ─── ORDER SUBMISSION ───
+    document.getElementById('submit-btn').addEventListener('click', async () => {
+      const ime     = document.getElementById('ime').value.trim();
+      const prezime = document.getElementById('prezime').value.trim();
+      const adresa  = document.getElementById('adresa').value.trim();
+      const grad    = document.getElementById('grad').value.trim();
+      const telefon = document.getElementById('telefon').value.trim();
+
+      // Validate fields
+      let valid = true;
+      ['ime','prezime','adresa','grad','telefon'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          el.style.borderBottom = '2px solid #c0392b';
+          valid = false;
+        } else {
+          el.style.borderBottom = '';
+        }
+      });
+
+      // Validate size
+      if (!selectedSize) {
+        const sizeBtnsWrap = document.querySelector('.form-size-btn').parentElement;
+        sizeBtnsWrap.style.outline = '2px solid #c0392b';
+        sizeBtnsWrap.style.borderRadius = '6px';
+        sizeBtnsWrap.style.padding = '8px';
+        document.querySelector('.form-size-btn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'SLANJE...';
+
+      try {
+        const res = await fetch('http://localhost:3001/api/order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ime, prezime, adresa, grad, telefon,
+            velicina: selectedSize,
+            proizvod: 'DIESEL - Majica s printom - crna',
+            cijena: '59.90',
+            url: window.location.href
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          document.getElementById('forma').innerHTML = `
+            <div style="text-align:center;padding:60px 20px;">
+              <div style="width:56px;height:56px;border-radius:50%;background:#f0f7f2;border:2px solid #4a7c59;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <h2 style="font-family:'Syne',sans-serif;font-size:28px;font-weight:700;color:#1a1a18;margin-bottom:12px;">Hvala, ${ime}!</h2>
+              <p style="font-family:'DM Sans',sans-serif;font-size:15px;color:#666;margin:0 auto 8px;">Narudžba primljena. Kontaktirat ćemo vas na</p>
+              <p style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:#1a1a18;">${telefon}</p>
+            </div>
+          `;
+        } else {
+          throw new Error('Server error');
+        }
+      } catch (err) {
+        console.error('Order error:', err);
+        btn.disabled = false;
+        btn.textContent = 'POTVRDI NARUDŽBU';
+        alert('Greška pri slanju narudžbe. Provjerite da li je server pokrenut (node server.js) i pokušajte ponovo.');
+      }
+    });
+
+    // ─── SOCIAL PROOF: VIEWERS ───
+    function animateCount(el, from, to) {
+      const duration = 600;
+      const start = performance.now();
+      const diff = to - from;
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        el.textContent = Math.round(from + diff * progress);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    function updateViewers() {
+      const el = document.getElementById('viewers-count');
+      const current = parseInt(el.textContent);
+      let next;
+      do { next = Math.floor(Math.random() * (34 - 18 + 1)) + 18; } while (next === current);
+      animateCount(el, current, next);
+      setTimeout(updateViewers, Math.random() * 4000 + 8000);
+    }
+    updateViewers();
+
+    // ─── SOCIAL PROOF: ORDERS ───
+    function updateOrders() {
+      const el = document.getElementById('orders-count');
+      animateCount(el, parseInt(el.textContent), parseInt(el.textContent) + 1);
+      setTimeout(updateOrders, Math.random() * 180000 + 240000);
+    }
+    setTimeout(updateOrders, Math.random() * 180000 + 240000);
+
+    // ─── TOAST NOTIFICATIONS ───
+    const gradSuffix = {
+      "Tuzla":      "Tuzle",
+      "Sarajevo":   "Sarajeva",
+      "Mostar":     "Mostara",
+      "Zenica":     "Zenice",
+      "Banja Luka": "Banje Luke",
+      "Travnik":    "Travnika",
+      "Brčko":      "Brčkog",
+      "Živinice":   "Živinica",
+      "Gradačac":   "Gradačca",
+      "Bijeljina":  "Bijeljine"
+    };
+
+    const notifications = [
+      { ime: "Samir",  grad: "Tuzla" },
+      { ime: "Emir",   grad: "Sarajevo" },
+      { ime: "Damir",  grad: "Mostar" },
+      { ime: "Haris",  grad: "Zenica" },
+      { ime: "Alen",   grad: "Banja Luka" },
+      { ime: "Kenan",  grad: "Travnik" },
+      { ime: "Adnan",  grad: "Brčko" },
+      { ime: "Mirza",  grad: "Živinice" },
+      { ime: "Tarik",  grad: "Gradačac" },
+      { ime: "Eldin",  grad: "Bijeljina" }
+    ];
+
+    let notifQueue = [...notifications].sort(() => Math.random() - 0.5);
+    let notifIndex = 0;
+
+    function showToast() {
+      if (notifIndex >= notifQueue.length) {
+        notifQueue = [...notifications].sort(() => Math.random() - 0.5);
+        notifIndex = 0;
+      }
+      const person = notifQueue[notifIndex++];
+      const minutes = Math.floor(Math.random() * 9) + 1;
+      const minLabel = minutes === 1 ? 'minutu' : minutes < 5 ? 'minute' : 'minuta';
+      const gradFormatted = gradSuffix[person.grad] || person.grad;
+
+      document.getElementById('toast-main').innerHTML =
+        `🛍 <strong>${person.ime} iz ${gradFormatted}</strong> upravo naručio Diesel majica s printom`;
+      document.getElementById('toast-time').textContent = `⏱ prije ${minutes} ${minLabel}`;
+
+      const toast = document.getElementById('toast');
+      toast.style.display = 'block';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          toast.classList.add('toast-show');
+          toast.classList.remove('toast-hide');
+        });
+      });
+
+      setTimeout(() => {
+        toast.classList.remove('toast-show');
+        toast.classList.add('toast-hide');
+        setTimeout(() => { toast.style.display = 'none'; }, 400);
+      }, 4000);
+
+      setTimeout(showToast, 30000);
+    }
+
+    setTimeout(showToast, 8000);
+
+    // ─── COUNTDOWN TIMER ───
+    const getStoredTime = () => {
+      const stored = localStorage.getItem('bagarda_countdown');
+      if (stored) {
+        const { expiry } = JSON.parse(stored);
+        if (Date.now() < expiry) return Math.floor((expiry - Date.now()) / 1000);
+      }
+      const seconds = Math.floor(Math.random() * (23 * 3600 + 3599 - 18 * 3600) + 18 * 3600);
+      localStorage.setItem('bagarda_countdown', JSON.stringify({ expiry: Date.now() + seconds * 1000 }));
+      return seconds;
+    };
+
+    let timeLeft = getStoredTime();
+
+    const updateCountdown = () => {
+      if (timeLeft <= 0) {
+        timeLeft = Math.floor(Math.random() * (23 * 3600 + 3599 - 18 * 3600) + 18 * 3600);
+        localStorage.setItem('bagarda_countdown', JSON.stringify({ expiry: Date.now() + timeLeft * 1000 }));
+      }
+      const h = String(Math.floor(timeLeft / 3600)).padStart(2, '0');
+      const m = String(Math.floor((timeLeft % 3600) / 60)).padStart(2, '0');
+      const s = String(timeLeft % 60).padStart(2, '0');
+      document.getElementById('countdown-timer').textContent = `${h}:${m}:${s}`;
+      timeLeft--;
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ─── FORM SIZE BUTTONS ───
+    document.querySelectorAll('.form-size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.form-size-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedSize = btn.dataset.size;
+
+        // Update hidden size field
+        const sizeField = document.getElementById('velicina-input');
+        if (sizeField) sizeField.value = selectedSize;
+
+        // Update summary box
+        const summarySize = document.getElementById('summary-size');
+        if (summarySize) {
+          summarySize.textContent = `Veličina: ${selectedSize}`;
+          summarySize.style.color = '#1a1a18';
+          summarySize.style.fontWeight = '600';
+        }
+
+        // Update floating CTA size if present
+        const fctaSize = document.getElementById('fcta-size');
+        if (fctaSize) fctaSize.textContent = selectedSize;
+
+        // Clear size note + outline
+        document.getElementById('formSizeNote').classList.remove('visible');
+        const sizeBtnsWrap = btn.parentElement;
+        sizeBtnsWrap.style.outline = '';
+        sizeBtnsWrap.style.padding = '';
+
+        // Progress step 1 → done
+        const step1 = document.getElementById('progress-step-1');
+        if (step1) { step1.innerHTML = '✓'; step1.style.background = '#4a7c59'; }
+        // Progress step 2 → activate
+        const step2 = document.getElementById('progress-step-2');
+        if (step2) step2.style.background = '#1a1a18';
+      });
+    });
+
+    // Progress step 2 → done on first form field focus
+    document.querySelector('#forma input').addEventListener('focus', () => {
+      const step2 = document.getElementById('progress-step-2');
+      if (step2) { step2.innerHTML = '✓'; step2.style.background = '#4a7c59'; }
+      const step3 = document.getElementById('progress-step-3');
+      if (step3) { step3.style.background = '#1a1a18'; step3.style.color = '#fff'; }
+    }, { once: true });
+
+    // ─── STOCK PROGRESS BAR ───
+    (function() {
+      const soldPct = Math.floor(Math.random() * 31) + 60;
+      const remaining = 100 - soldPct;
+      document.getElementById('stock-bar').style.width = soldPct + '%';
+      if (soldPct >= 85) {
+        document.getElementById('stock-label').textContent = 'Kritično malo';
+        document.getElementById('stock-label').style.color = '#c0392b';
+      } else if (soldPct >= 70) {
+        document.getElementById('stock-label').textContent = 'Prodaje se brzo';
+        document.getElementById('stock-label').style.color = '#d4732a';
+      } else {
+        document.getElementById('stock-label').textContent = 'Ograničene zalihe';
+        document.getElementById('stock-label').style.color = '#b8860b';
+      }
+      document.getElementById('stock-sub').textContent = `${soldPct}% rasprodano — ostalo svega ${remaining}% zaliha`;
+    })();
+
+    // ─── STICKY MOBILE BAR ───
+    (function() {
+      const stickyBar = document.getElementById('sticky-bar');
+      if (window.innerWidth <= 768) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            stickyBar.style.display = entry.isIntersecting ? 'none' : 'flex';
+          });
+        }, { threshold: 0 });
+        observer.observe(document.querySelector('.btn-order'));
+      }
+    })();
+
+    // ─── LIGHTBOX ───
+    document.querySelector('.product-image-container').addEventListener('click', () => {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = document.querySelector('.product-image-container img').src;
+      lb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', () => {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = '';
+    });
+
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target !== document.getElementById('lightbox-img')) {
+        document.getElementById('lightbox').style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close lightbox on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.getElementById('lightbox').style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+
+  </script>
+
+  <!-- ─── FLOATING CTA ─── -->
+  <style>
+    #fcta{position:fixed!important;bottom:28px!important;right:24px!important;z-index:2147483647!important;opacity:0;transform:translateY(16px);transition:opacity 0.35s,transform 0.35s;pointer-events:none;min-width:260px;}
+    #fcta.on{opacity:1!important;transform:translateY(0)!important;pointer-events:all!important;}
+    .fcta-in{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #ddd;border-radius:12px;padding:10px 14px;cursor:pointer;box-shadow:0 8px 32px rgba(0,0,0,0.18);}
+    .fcta-in:hover{box-shadow:0 12px 40px rgba(0,0,0,0.25);}
+    .fcta-img{width:42px;height:42px;object-fit:cover;border-radius:6px;flex-shrink:0;}
+    .fcta-n{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:#1a1a18;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .fcta-p{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#1a1a18;}
+    .fcta-op{font-family:'DM Sans',sans-serif;font-size:11px;color:#bbb;text-decoration:line-through;margin-left:6px;}
+    .fcta-b{background:#1a1a18;color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;padding:9px 12px;border-radius:7px;white-space:nowrap;flex-shrink:0;}
+    @media(max-width:768px){#fcta{right:12px;left:12px;bottom:16px;}.fcta-in{width:100%;}}
+  </style>
+  <div id="fcta">
+    <div class="fcta-in" onclick="document.getElementById('forma').scrollIntoView({behavior:'smooth'})">
+      <img class="fcta-img" src="./images/7f18f826f5ed74fb4cb4760d542e7f801815497.jpeg">
+      <div style="flex:1;min-width:0;">
+        <div class="fcta-n">Diesel — Majica s printom</div>
+        <div><span class="fcta-p">59,90 KM</span><span class="fcta-op">119,90 KM</span></div>
+      </div>
+      <div class="fcta-b">NARUČI →</div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var el=document.getElementById('fcta');
+    var forma=document.getElementById('forma');
+    if(!el)return;
+    var fv=false;
+    if(forma){
+      new IntersectionObserver(function(e){
+        fv=e[0].isIntersecting;
+        el.classList.toggle('on',!fv&&window.scrollY>300);
+      },{threshold:0.1}).observe(forma);
+    }
+    window.addEventListener('scroll',function(){
+      el.classList.toggle('on',window.scrollY>300&&!fv);
+    },{passive:true});
+  })();
+  </script>
+
+</body>
+</html>

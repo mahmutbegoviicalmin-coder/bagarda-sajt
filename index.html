@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bagarda — Premium brendovi po outlet cijenama</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF8F5;
+      --text: #1a1a18;
+      --accent: #C9A96E;
+      --border: #E5E0D8;
+      --muted: #7a7670;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: #1a1a18;
+      text-align: center;
+      padding: 64px 20px 52px;
+    }
+    .hero-eyebrow {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(34px, 5vw, 54px);
+      font-weight: 700;
+      line-height: 1.12;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+    .hero-title span { color: var(--accent); }
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: #a09a94;
+      max-width: 480px;
+      margin: 0 auto 32px;
+      line-height: 1.75;
+    }
+    .hero-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #1a1a18;
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .hero-btn:hover { opacity: 0.85; }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: #111110;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+    }
+    .stat-item {
+      flex: 1;
+      max-width: 240px;
+      text-align: center;
+      padding: 18px 20px;
+      border-right: 1px solid #2a2a27;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px;
+      font-weight: 300;
+      color: #6a6560;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    /* ─── FILTER BAR ─── */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 28px 20px 20px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 40px;
+      transition: background 0.18s, color 0.18s, border-color 0.18s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
+    }
+
+    /* ─── PRODUCTS GRID ─── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #e0dbd3;
+    }
+
+    /* ─── PRODUCT CARD ─── */
+    .product-card {
+      background: var(--bg);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.18s;
+    }
+    .product-card:hover { background: #f5f2ed; }
+    .card-image-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #f0ede8;
+      overflow: hidden;
+    }
+    .card-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .product-card:hover .card-image-wrap img { transform: scale(1.04); }
+    .card-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #c0392b;
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 4px 9px;
+    }
+    .card-body {
+      padding: 16px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+    }
+    .card-brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .card-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text);
+    }
+    .card-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .card-price {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .card-old {
+      font-size: 13px;
+      color: #bbb;
+      text-decoration: line-through;
+    }
+    .card-cta {
+      margin-top: auto;
+      padding-top: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .product-card:hover .card-cta { color: var(--accent); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #1a1a18;
+      padding: 36px 20px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .footer-copy {
+      font-size: 12px;
+      color: #504c48;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-bar { flex-wrap: wrap; }
+      .stat-item { border-right: none; border-bottom: 1px solid #2a2a27; min-width: 50%; }
+      .hero-title { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HERO ─── -->
+  <div class="hero">
+    <div class="hero-eyebrow">Bagarda Boutique</div>
+    <h1 class="hero-title">Premium brendovi<br><span>po outlet cijenama</span></h1>
+    <p class="hero-sub">Tommy Hilfiger, Calvin Klein, Diesel, Armani Exchange — isporuka širom BiH za 1–2 radna dana.</p>
+    <a class="hero-btn" href="#proizvodi">Pogledaj kolekciju</a>
+  </div>
+
+  <!-- ─── STATS BAR ─── -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">247+</div>
+      <div class="stat-label">zadovoljnih kupaca</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4.9/5</div>
+      <div class="stat-label">prosječna ocjena</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1–2</div>
+      <div class="stat-label">dana dostava u BiH</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">−50%</div>
+      <div class="stat-label">popust na sve artikle</div>
+    </div>
+  </div>
+
+  <!-- ─── FILTER BAR ─── -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">Sve</button>
+    <button class="filter-btn" data-filter="polo">Polo majice</button>
+    <button class="filter-btn" data-filter="majica">T-Shirts</button>
+    <button class="filter-btn" data-filter="tommy">Tommy Hilfiger</button>
+    <button class="filter-btn" data-filter="calvin">Calvin Klein</button>
+    <button class="filter-btn" data-filter="diesel">Diesel</button>
+    <button class="filter-btn" data-filter="armani">Armani Exchange</button>
+  </div>
+
+  <!-- ─── PRODUCTS ─── -->
+  <div id="proizvodi" class="products-grid">
+    <div class="product-card" data-type="polo" data-brand="calvin" onclick="window.location='./calvin-klein-bijela-polo.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776696856344-wn297nfxd8i.jpg" alt="Calvin Klein Polo Majica s logom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Calvin Klein</div>
+        <div class="card-name">Polo Majica s logom — Bijela</div>
+        <div class="card-price-row">
+          <span class="card-price">69,90 KM</span>
+          <span class="card-old">139,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="polo" data-brand="calvin" onclick="window.location='./calvin-klein-crna-polo.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776697233216-83bv3vimdkr.jpg" alt="Calvin Klein Polo Majica s logom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Calvin Klein</div>
+        <div class="card-name">Polo Majica s logom — Crna</div>
+        <div class="card-price-row">
+          <span class="card-price">69,90 KM</span>
+          <span class="card-old">139,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="polo" data-brand="tommy" onclick="window.location='./tommy-hilfiger-crna-polo.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776697395299-pxsv0ti8xtr.jpg" alt="Tommy Hilfiger Polo majica s zelenim rukavima" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Tommy Hilfiger</div>
+        <div class="card-name">Polo majica s zelenim rukavima — Crna</div>
+        <div class="card-price-row">
+          <span class="card-price">69,90 KM</span>
+          <span class="card-old">139,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="polo" data-brand="tommy" onclick="window.location='./tommy-hilfiger-zelena-polo.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776697594904-wftj5gbapbl.jpg" alt="Tommy Hilfiger Polo Majica s kontrastnim rukavima" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Tommy Hilfiger</div>
+        <div class="card-name">Polo Majica s kontrastnim rukavima — Zelena</div>
+        <div class="card-price-row">
+          <span class="card-price">69,90 KM</span>
+          <span class="card-old">139,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="polo" data-brand="tommy" onclick="window.location='./tommy-hilfiger-bijela-polo.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776698138324-3f1larrszfr.jpg" alt="Tommy Hilfiger Polo Majica s kontrastnim rukavima" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Tommy Hilfiger</div>
+        <div class="card-name">Polo Majica s kontrastnim rukavima — Bijela</div>
+        <div class="card-price-row">
+          <span class="card-price">69,90 KM</span>
+          <span class="card-old">139,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="polo" data-brand="tommy" onclick="window.location='./tommy-hilfiger-teget-polo.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776698306591-tksrj2hruo.jpg" alt="Tommy Hilfiger Polo Majica s crvenim rukavima" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Tommy Hilfiger</div>
+        <div class="card-name">Polo Majica s crvenim rukavima — Teget</div>
+        <div class="card-price-row">
+          <span class="card-price">69,90 KM</span>
+          <span class="card-old">139,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="polo" data-brand="armani" onclick="window.location='./armani-exchange-teget-polo.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776698417436-hf9wfrxdtnb (1).jpg" alt="Armani Exchange Polo Majica s logom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Armani Exchange</div>
+        <div class="card-name">Polo Majica s logom — Teget</div>
+        <div class="card-price-row">
+          <span class="card-price">69,90 KM</span>
+          <span class="card-old">139,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="polo" data-brand="armani" onclick="window.location='./armani-exchange-bijela-polo.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776698444557-cg7ths85h5j.jpg" alt="Armani Exchange Polo Majica" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Armani Exchange</div>
+        <div class="card-name">Polo Majica — Bijela</div>
+        <div class="card-price-row">
+          <span class="card-price">69,90 KM</span>
+          <span class="card-old">139,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="polo" data-brand="calvin" onclick="window.location='./calvin-klein-teget-polo.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776698475231-8lqfef7mry7.jpg" alt="Calvin Klein Polo Majica s logom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Calvin Klein</div>
+        <div class="card-name">Polo Majica s logom — Teget</div>
+        <div class="card-price-row">
+          <span class="card-price">69,90 KM</span>
+          <span class="card-old">139,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-bijela-majica.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776698722355-22m1hxxp8n5.jpg" alt="Diesel Majica s printom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Diesel</div>
+        <div class="card-name">Majica s printom — Bijela</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="calvin" onclick="window.location='./calvin-klein-bijela-majica.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776698746680-tiv64sv5nm.jpg" alt="Calvin Klein Majica s logom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Calvin Klein</div>
+        <div class="card-name">Majica s logom — Bijela</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="calvin" onclick="window.location='./calvin-klein-teget-majica.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776698787923-z39rrzc6wg.jpg" alt="Calvin Klein Majica s logom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Calvin Klein</div>
+        <div class="card-name">Majica s logom — Teget</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="calvin" onclick="window.location='./calvin-klein-bez-majica.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776699047116-17py2habuz3 (1).jpg" alt="Calvin Klein Majica s logom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Calvin Klein</div>
+        <div class="card-name">Majica s logom — Bež</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="calvin" onclick="window.location='./calvin-klein-crna-majica.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776699126469-iihab8w9ef9.jpg" alt="Calvin Klein Majica s logom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Calvin Klein</div>
+        <div class="card-name">Majica s logom — Crna</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-tamno-siva-majica.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776699278578-k2dothdzbtd.jpg" alt="Diesel Majica s printom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Diesel</div>
+        <div class="card-name">Majica s printom — Tamno siva</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-bijela-majica-2.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776699448927-ys3xcqpxo5 (1).jpg" alt="Diesel Majica s printom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Diesel</div>
+        <div class="card-name">Majica s printom — Bijela</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="armani" onclick="window.location='./armani-exchange-bijela-majica.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776699748133-jwrjk0375gn.jpg" alt="Armani Exchange Majica s printom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Armani Exchange</div>
+        <div class="card-name">Majica s printom — Bijela</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="armani" onclick="window.location='./armani-exchange-crna-majica.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776699806740-xr3kbfm6c9j.jpg" alt="Armani Exchange Majica s printom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Armani Exchange</div>
+        <div class="card-name">Majica s printom — Crna</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-bijela-majica-3.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776699909417-9re6z3zhp77.jpg" alt="Diesel Majica s printom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Diesel</div>
+        <div class="card-name">Majica s printom — Bijela</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-crna-majica.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776699939682-wwmwcbcypj.jpg" alt="Diesel Majica s printom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Diesel</div>
+        <div class="card-name">Majica s printom — Crna</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="calvin" onclick="window.location='./calvin-klein-mint-zelena-majica.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776699972498-fgl2bzsdfxh.jpg" alt="Calvin Klein Majica s logom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Calvin Klein</div>
+        <div class="card-name">Majica s logom — Mint zelena</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="polo" data-brand="tommy" onclick="window.location='./tommy-hilfiger-bordo-polo.html'">
+      <div class="card-image-wrap">
+        <img src="./images/1776700011755-9hzev79vll5.jpg" alt="Tommy Hilfiger Polo Majica s kontrastnim rukavima" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Tommy Hilfiger</div>
+        <div class="card-name">Polo Majica s kontrastnim rukavima — Bordo</div>
+        <div class="card-price-row">
+          <span class="card-price">69,90 KM</span>
+          <span class="card-old">139,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-crna-majica-2.html'">
+      <div class="card-image-wrap">
+        <img src="./images/702422e6f1d8e16fa48591ff6131e0441279279.jpeg" alt="Diesel Majica s printom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Diesel</div>
+        <div class="card-name">Majica s printom — Crna</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+    <div class="product-card" data-type="majica" data-brand="diesel" onclick="window.location='./diesel-crna-majica-3.html'">
+      <div class="card-image-wrap">
+        <img src="./images/7f18f826f5ed74fb4cb4760d542e7f801815497.jpeg" alt="Diesel Majica s printom" loading="lazy" />
+        <div class="card-badge">−50%</div>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Diesel</div>
+        <div class="card-name">Majica s printom — Crna</div>
+        <div class="card-price-row">
+          <span class="card-price">59,90 KM</span>
+          <span class="card-old">119,90 KM</span>
+        </div>
+        <div class="card-cta">Naruči →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-logo">Bagarda</div>
+    <div class="footer-copy">&copy; 2025 Bagarda. Sva prava zadržana.</div>
+  </footer>
+
+  <script>
+    (function () {
+      var btns  = document.querySelectorAll('.filter-btn');
+      var cards = document.querySelectorAll('.product-card');
+
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          btns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+
+          var filter = btn.dataset.filter;
+          cards.forEach(function (card) {
+            var show = filter === 'all'
+              || card.dataset.type  === filter
+              || card.dataset.brand === filter;
+            card.style.display = show ? 'block' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "bagarda-sajt",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "server": "node server.js",
+    "start": "npx serve . -p 3002"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "resend": "^3.2.0"
+  }
+}
