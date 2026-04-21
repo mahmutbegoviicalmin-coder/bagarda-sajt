@@ -867,17 +867,6 @@
     &copy; 2025 Bagarda. Sva prava zadržana.
   </footer>
 
-  <!-- ─── STICKY MOBILE BAR ─── -->
-  <div id="sticky-bar" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9998; background:#1a1a18; padding:12px 16px; align-items:center; justify-content:space-between; gap:12px; border-top:1px solid #333;">
-    <div>
-      <div style="font-family:'Raleway',sans-serif; font-size:13px; color:#fff; font-weight:600;" id="sticky-name">Tommy Hilfiger — Polo Majica s kontrastnim rukavima</div>
-      <div style="font-family:'DM Sans',sans-serif; font-size:13px; color:#6B21A8; font-weight:500;">69,90 KM</div>
-    </div>
-    <button onclick="document.getElementById('forma').scrollIntoView({behavior:'smooth'})" style="background:#6B21A8; color:#1a1a18; border:none; padding:10px 20px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; border-radius:4px; cursor:pointer; white-space:nowrap;">
-      NARUČI ODMAH
-    </button>
-  </div>
-
   <!-- ─── LIGHTBOX ─── -->
   <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:99999; cursor:zoom-out; align-items:center; justify-content:center;">
     <img id="lightbox-img" style="max-width:90vw; max-height:90vh; object-fit:contain; border-radius:4px;">
@@ -1171,19 +1160,6 @@
         document.getElementById('stock-label').style.color = '#b8860b';
       }
       document.getElementById('stock-sub').textContent = `${soldPct}% rasprodano — ostalo svega ${remaining}% zaliha`;
-    })();
-
-    // ─── STICKY MOBILE BAR ───
-    (function() {
-      const stickyBar = document.getElementById('sticky-bar');
-      if (window.innerWidth <= 768) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            stickyBar.style.display = entry.isIntersecting ? 'none' : 'flex';
-          });
-        }, { threshold: 0 });
-        observer.observe(document.querySelector('.btn-order'));
-      }
     })();
 
     // ─── LIGHTBOX ───

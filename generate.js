@@ -159,19 +159,7 @@ function generatePage(product, template) {
     `'/images/${file}'`
   );
 
-  // 15. Sticky bar product name
-  html = html.replace(
-    'id="sticky-name">Tommy Hilfiger — Majica na kragnu</div>',
-    `id="sticky-name">${brandFmt} — ${name}</div>`
-  );
-
-  // 16. Sticky bar price
-  html = html.replace(
-    "font-family:'DM Sans',sans-serif; font-size:13px; color:#6B21A8; font-weight:500;\">69,90 KM</div>",
-    `font-family:'DM Sans',sans-serif; font-size:13px; color:#6B21A8; font-weight:500;\">${price.current}</div>`
-  );
-
-  // 17. Floating CTA — image
+  // 15. Floating CTA — image
   html = html.replace(
     '<img class="fcta-img" src="./images/tommy-polo-crna.jpg">',
     `<img class="fcta-img" src="./images/${file}">`
@@ -373,7 +361,7 @@ function generateIndex(products, slugMap) {
   <!-- NAV -->
   <nav style="background:#fff;border-bottom:1px solid #E5E5E3;position:sticky;top:0;z-index:1000;">
     <div style="max-width:1280px;margin:0 auto;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;">
-      <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.15em;color:#888;">KOLEKCIJA 2025</span>
+      <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.15em;color:#888;">KOLEKCIJA 2026</span>
       <a href="index.html" style="font-family:'Raleway',sans-serif;font-size:18px;font-weight:700;color:#111;text-decoration:none;letter-spacing:0.2em;">BAGARDA</a>
       <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.15em;color:#888;">BiH DOSTAVA</span>
     </div>
